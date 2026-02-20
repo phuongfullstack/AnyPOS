@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="AnyPOS.Api/AnyPOS.Api.csproj" />
+  <Project Path="AnyPOS.Core/AnyPOS.Core.csproj" />
+  <Project Path="AnyPOS.Tests/AnyPOS.Tests.csproj" />
+</Solution>

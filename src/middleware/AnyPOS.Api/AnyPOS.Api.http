@@ -1,0 +1,6 @@
+@AnyPOS.Api_HostAddress = http://localhost:5068
+
+GET {{AnyPOS.Api_HostAddress}}/api/products/sync
+Accept: application/json
+
+###
