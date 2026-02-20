@@ -1,0 +1,32 @@
+
+> anypos-renderer@1.0.0 dev
+> next dev
+
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /app/src/pos-app/package-lock.json as the root directory.
+ To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
+ Detected additional lockfiles:
+   * /app/src/pos-app/renderer/package-lock.json
+
+   ▲ Next.js 15.5.12
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.2:3000
+
+ ✓ Starting...
+
+   We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+   The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
+
+	- include was updated to add 'out/types/**/*.ts'
+
+ ✓ Ready in 1964ms
+ ○ Compiling / ...
+ ✓ Compiled / in 7.4s (606 modules)
+ GET / 200 in 8791ms
+ ○ Compiling /pos ...
+ ✓ Compiled /pos in 572ms (615 modules)
+ GET /pos 200 in 1024ms
+ ✓ Compiled /orders in 315ms (608 modules)
+ GET /orders 200 in 560ms
+[?25h
