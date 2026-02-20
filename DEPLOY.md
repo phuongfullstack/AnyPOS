@@ -26,8 +26,8 @@ This guide explains how to deploy the AnyPOS backend to Render using the `render
 ### Backend (Middleware)
 
 - **Service Name:** `anypos-api`
-- **Runtime:** .NET 8 (Native)
-- **Port:** Listens on port `10000` (mapped to external HTTP/HTTPS).
+- **Runtime:** Docker (using `src/middleware/Dockerfile`)
+- **Port:** Listens on port `8080` (default for ASP.NET Core in Docker) or configured via `ASPNETCORE_URLS`.
 - **Environment Variables:**
     - `ASPNETCORE_URLS`: `http://0.0.0.0:10000` (Required for Render)
     - `ConnectionStrings__DefaultConnection`: Automatically linked to the `anypos-db` database.
@@ -52,5 +52,5 @@ The `pos-app` is an Electron-based desktop application designed for offline-firs
 
 ## Troubleshooting
 
-- **Build Failures:** Check the logs in the Render Dashboard. Ensure the `dotnet publish` command is running correctly in the `src/middleware` directory.
-- **Database Connection:** Verify that the `ConnectionStrings__DefaultConnection` environment variable is correctly set in the Web Service settings. It should look like `postgres://user:password@hostname/database`.
+- **Build Failures:** Check the logs in the Render Dashboard. The deployment uses Docker, so ensure the `src/middleware/Dockerfile` builds correctly.
+- **Database Connection:** Verify that the `ConnectionStrings__DefaultConnection` environment variable is correctly set in the Web Service settings.
