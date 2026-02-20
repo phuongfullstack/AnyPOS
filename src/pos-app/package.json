@@ -1,0 +1,31 @@
+{
+  "name": "anypos-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "electron/main.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "next dev renderer",
+    "build": "next build renderer",
+    "electron": "electron .",
+    "electron:dev": "concurrently \"npm run dev\" \"electron .\"",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.6.2"
+  }
+}

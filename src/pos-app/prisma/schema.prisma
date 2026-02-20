@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Order {
+  id          Int      @id @default(autoincrement())
+  posOrderId  String   @unique
+  wcOrderId   String?
+  invoiceNo   String?
+  syncStatus  Int      @default(0)
+  taxCode     String?
+  subTotal    Float    @default(0)
+  taxAmount   Float    @default(0)
+  total       Float    @default(0)
+  createdAt   DateTime @default(now())
+  syncedAt    DateTime?
+  items       OrderItem[]
+}
+
+model OrderItem {
+  id          Int    @id @default(autoincrement())
+  orderId     Int
+  productId   String
+  wcProductId String?
+  name        String
+  quantity    Int
+  unitPrice   Float
+  taxRate     Float
+  lineTotal   Float
+  order       Order  @relation(fields: [orderId], references: [id])
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  localId     String   @unique
+  wcProductId String?
+  name        String
+  price       Float
+  taxRate     Float    @default(10)
+  stock       Int      @default(0)
+  updatedAt   DateTime @updatedAt
+}
+
+model SyncQueue {
+  id          Int      @id @default(autoincrement())
+  posOrderId  String
+  wcOrderId   String?
+  invoiceNo   String?
+  syncStatus  Int      @default(0)
+  taxCode     String?
+  payload     String
+  retryCount  Int      @default(0)
+  nextRetryAt DateTime?
+  errorMessage String?
+  createdAt   DateTime @default(now())
+}
