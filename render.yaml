@@ -2,7 +2,6 @@ services:
   - type: web
     name: anypos-api
     runtime: docker
-    rootDir: src/middleware
     envVars:
       - key: ASPNETCORE_URLS
         value: http://0.0.0.0:10000
