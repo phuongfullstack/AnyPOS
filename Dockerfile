@@ -3,12 +3,12 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
 # Copy csproj and restore as distinct layers
-COPY ["AnyPOS.Api/AnyPOS.Api.csproj", "AnyPOS.Api/"]
-COPY ["AnyPOS.Core/AnyPOS.Core.csproj", "AnyPOS.Core/"]
+COPY ["src/middleware/AnyPOS.Api/AnyPOS.Api.csproj", "AnyPOS.Api/"]
+COPY ["src/middleware/AnyPOS.Core/AnyPOS.Core.csproj", "AnyPOS.Core/"]
 RUN dotnet restore "AnyPOS.Api/AnyPOS.Api.csproj"
 
 # Copy everything else and build
-COPY . .
+COPY src/middleware .
 WORKDIR "/src/AnyPOS.Api"
 RUN dotnet publish "AnyPOS.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 

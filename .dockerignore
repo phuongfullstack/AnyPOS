@@ -1,0 +1,7 @@
+src/pos-app
+node_modules
+.git
+.gitignore
+README.md
+DEPLOY.md
+render.yaml
