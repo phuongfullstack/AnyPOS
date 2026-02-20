@@ -1,14 +1,14 @@
-const Database = require('better-sqlite3');
-const path = require('path');
-const os = require('os');
+import Database from 'better-sqlite3';
+import path from 'path';
+import os from 'os';
+import { mkdirSync } from 'fs';
 
 const DB_PATH = path.join(os.homedir(), '.anypos', 'anypos.db');
 
-let db;
+let db: InstanceType<typeof Database> | undefined;
 
-function getDb() {
+export function getDb(): InstanceType<typeof Database> {
   if (!db) {
-    const { mkdirSync } = require('fs');
     mkdirSync(path.dirname(DB_PATH), { recursive: true });
     db = new Database(DB_PATH);
     db.pragma('journal_mode = WAL');
@@ -17,7 +17,7 @@ function getDb() {
   return db;
 }
 
-function initSchema(database) {
+function initSchema(database: InstanceType<typeof Database>): void {
   database.exec(`
     CREATE TABLE IF NOT EXISTS orders (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -67,9 +67,8 @@ function initSchema(database) {
       retry_count INTEGER NOT NULL DEFAULT 0,
       next_retry_at TEXT,
       error_message TEXT,
+      synced_at TEXT,
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
   `);
 }
-
-module.exports = { getDb };

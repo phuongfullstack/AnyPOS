@@ -6,11 +6,9 @@
 /**
  * Generate a deterministic offline invoice code.
  * Format: {prefix}-{YYYYMMDD}-{sequence:06d}
- * @param {string} prefix - POS identifier prefix registered with tax authority
- * @param {Date} date
- * @param {number} sequence
+ * @param prefix - POS identifier prefix registered with tax authority
  */
-function generate(prefix, date, sequence) {
+export function generate(prefix: string, date: Date, sequence: number): string {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
@@ -21,12 +19,9 @@ function generate(prefix, date, sequence) {
 /**
  * Generate a globally unique temporary ID for offline use.
  * Format: {posIdentifier}-{timestamp}-{random4digits}
- * @param {string} posIdentifier
  */
-function generateUniqueId(posIdentifier) {
+export function generateUniqueId(posIdentifier: string): string {
   const timestamp = Date.now();
   const random = Math.floor(Math.random() * 9000) + 1000;
   return `${posIdentifier}-${timestamp}-${random}`;
 }
-
-module.exports = { generate, generateUniqueId };

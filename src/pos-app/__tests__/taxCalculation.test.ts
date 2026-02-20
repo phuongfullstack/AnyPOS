@@ -1,4 +1,9 @@
-const { calculateTax, calculateLineTotal, calculateOrderTotals, roundHalfAwayFromZero } = require('../lib/taxCalculation');
+import {
+  calculateTax,
+  calculateLineTotal,
+  calculateOrderTotals,
+  roundHalfAwayFromZero,
+} from '../lib/taxCalculation';
 
 describe('roundHalfAwayFromZero', () => {
   test('rounds 0.5 up', () => expect(roundHalfAwayFromZero(0.5)).toBe(1));

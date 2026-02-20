@@ -1,4 +1,4 @@
-const { generate, generateUniqueId } = require('../lib/offlineInvoiceCode');
+import { generate, generateUniqueId } from '../lib/offlineInvoiceCode';
 
 describe('generate', () => {
   test('produces correct format', () => {

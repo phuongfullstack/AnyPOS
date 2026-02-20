@@ -1,4 +1,4 @@
-const { getBackoffDelay } = require('../lib/syncWorker');
+import { getBackoffDelay } from '../lib/syncWorker';
 
 describe('getBackoffDelay', () => {
   test('retry 0: 5000ms', () => expect(getBackoffDelay(0)).toBe(5000));

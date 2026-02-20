@@ -3,39 +3,45 @@
  * Rounding: round half up (away from zero), to nearest integer (VND).
  */
 
-/**
- * Round half away from zero (accounting standard).
- * @param {number} value
- */
-function roundHalfAwayFromZero(value) {
-  return value >= 0 ? Math.floor(value + 0.5) : Math.ceil(value - 0.5);
+export interface TaxableItem {
+  unitPrice: number;
+  quantity: number;
+  taxRate: number;
+}
+
+export interface OrderTotals {
+  subTotal: number;
+  taxAmount: number;
+  total: number;
 }
 
 /**
- * Calculate tax with strict accounting rounding (round half away from zero).
- * @param {number} amount
- * @param {number} taxRate - percentage
+ * Round half away from zero (accounting standard).
  */
-function calculateTaxStrict(amount, taxRate) {
-  return roundHalfAwayFromZero(amount * taxRate / 100);
+export function roundHalfAwayFromZero(value: number): number {
+  return value >= 0 ? Math.floor(value + 0.5) : Math.ceil(value - 0.5);
+}
+
+function calculateTaxStrict(amount: number, taxRate: number): number {
+  return roundHalfAwayFromZero((amount * taxRate) / 100);
 }
 
 /**
  * Calculate line total (subtotal + tax).
- * @param {number} unitPrice
- * @param {number} quantity
- * @param {number} taxRate
  */
-function calculateLineTotal(unitPrice, quantity, taxRate) {
+export function calculateLineTotal(
+  unitPrice: number,
+  quantity: number,
+  taxRate: number,
+): number {
   const subTotal = unitPrice * quantity;
   return subTotal + calculateTaxStrict(subTotal, taxRate);
 }
 
 /**
  * Calculate order totals from items.
- * @param {Array<{unitPrice: number, quantity: number, taxRate: number}>} items
  */
-function calculateOrderTotals(items) {
+export function calculateOrderTotals(items: TaxableItem[]): OrderTotals {
   let subTotal = 0;
   let taxAmount = 0;
   for (const item of items) {
@@ -46,4 +52,4 @@ function calculateOrderTotals(items) {
   return { subTotal, taxAmount, total: subTotal + taxAmount };
 }
 
-module.exports = { calculateTax: calculateTaxStrict, calculateLineTotal, calculateOrderTotals, roundHalfAwayFromZero };
+export const calculateTax = calculateTaxStrict;
