@@ -47,7 +47,7 @@ The `pos-app` is an Electron-based desktop application designed for offline-firs
 **To connect the desktop app to the deployed backend:**
 
 1.  Get the URL of your deployed `anypos-api` service from the Render Dashboard (e.g., `https://anypos-api.onrender.com`).
-2.  Update the `src/pos-app/electron/config.ts` or relevant configuration file in the desktop app to point to this URL instead of `localhost`.
+2.  Update your POS app configuration so that it uses this URL instead of `localhost` (for example, by passing it as the `middlewareBaseUrl` when constructing the `SyncWorker` or your equivalent middleware client).
 3.  Build and distribute the Electron app separately.
 
 ## Troubleshooting
