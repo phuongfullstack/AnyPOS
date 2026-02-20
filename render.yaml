@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: anypos-api
+    runtime: dotnet
+    rootDir: src/middleware
+    buildCommand: dotnet publish AnyPOS.Api/AnyPOS.Api.csproj -c Release -o out
+    startCommand: dotnet out/AnyPOS.Api.dll
+    envVars:
+      - key: ASPNETCORE_URLS
+        value: http://0.0.0.0:10000
+      - key: ConnectionStrings__DefaultConnection
+        fromDatabase:
+          name: anypos-db
+          property: connectionString
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+
+databases:
+  - name: anypos-db
+    databaseName: anypos
+    user: anypos_user
+    plan: free
+    region: oregon
