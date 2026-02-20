@@ -1,0 +1,46 @@
+# .NET build artifacts
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.nupkg
+*.snupkg
+TestResults/
+
+# Node / npm
+node_modules/
+npm-debug.log*
+.npm
+
+# Next.js
+.next/
+renderer/out/
+renderer/.next/
+renderer/node_modules/
+
+# Electron build
+dist/
+out/
+
+# Prisma
+prisma/migrations/
+
+# SQLite databases
+*.db
+*.db-shm
+*.db-wal
+
+# Environment / secrets
+.env
+.env.local
+.env.production
+appsettings.Development.json
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
